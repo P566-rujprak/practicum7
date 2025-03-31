@@ -32,9 +32,9 @@ jobs:
         run: docker push ghcr.io/rujul13/arithmetic-service:1
 
       - name: Log in to Azure Container Registry
-        run: echo ${{ secrets.AZURE_CONTAINER_REGISTRY }} | docker login practicums7.azurecr.io -u practicums711 --password-stdin
+        run: echo ${{ secrets.AZURE_CONTAINER_REGISTRY }} | docker login practicum711.azurecr.io -u practicum711 --password-stdin
 
       - name: Tag and push Docker image to Azure Container Registry
         run: |
-          docker tag ghcr.io/rujul13/arithmetic-service:1 practicums711.azurecr.io/arithmetic-service:1
-          docker push practicums7.azurecr.io/arithmetic-service:1
+          docker tag ghcr.io/rujul13/arithmetic-service:1 practicum711.azurecr.io/arithmetic-service:1
+          docker push practicum711.azurecr.io/arithmetic-service:1
