@@ -32,9 +32,20 @@ jobs:
         run: docker push ghcr.io/rujul13/arithmetic-service:1
 
       - name: Log in to Azure Container Registry
-        run: echo ${{ secrets.AZURE_CONTAINER_REGISTRY }} | docker login practicum711.azurecr.io -u practicum711 --password-stdin
+        run: echo $CONTAINER_REGISTRY_PW | docker login $CONTAINER_REGISTRY --username $CONTAINER_REGISTRY_UN --password-stdin
 
       - name: Tag and push Docker image to Azure Container Registry
         run: |
-          docker tag ghcr.io/rujul13/arithmetic-service:1 practicum711.azurecr.io/arithmetic-service:1
-          docker push practicum711.azurecr.io/arithmetic-service:1
+          docker tag ghcr.io/rujul13/arithmetic-service:1 $VERSION $CONTAINER_REGISTRY/arithmetic-service:$VERSION
+          docker push $CONTAINER_REGISTRY/arithmetic-service:$VERSION
+
+      - uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Make deploy.sh executable
+        run: chmod +x scripts/deploy.sh
+
+      - name: Deploy to AKS
+        run: scripts/deploy.sh
+#comment
