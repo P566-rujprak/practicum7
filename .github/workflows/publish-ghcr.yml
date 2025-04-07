@@ -8,6 +8,11 @@ on:
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.sha }}
+      CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+      CONTAINER_REGISTRY_UN: ${{ secrets.CONTAINER_REGISTRY_UN }}
+      CONTAINER_REGISTRY_PW: ${{ secrets.CONTAINER_REGISTRY_PW }}
 
     steps:
       - name: Checkout code
