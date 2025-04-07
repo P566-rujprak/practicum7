@@ -44,13 +44,12 @@ jobs:
           docker tag ghcr.io/rujul13/arithmetic-service:1 practicumsruj.azurecr.io/arithmetic-service:1
           docker push practicumsruj.azurecr.io/arithmetic-service:1
 
-#      - uses: tale/kubectl-action@v1
-#        with:
-#          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
-#
+      - uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
+
 #      - name: Make deploy.sh executable
 #        run: chmod +x scripts/deploy.sh
-#
-#      - name: Deploy to AKS
-#        run: scripts/deploy.sh
-#comment
+
+      - name: Deploy to AKS
+        run: scripts/deploy.sh
