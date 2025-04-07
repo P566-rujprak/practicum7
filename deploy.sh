@@ -1,5 +1,4 @@
 set -u
-: "$CONTAINER_REGISTRY"
-: "$VERSION"
-
+: "practicumsruj.azurecr.io"
+: "1"
 envsubst < ./deploy.yaml | kubectl apply -f -
