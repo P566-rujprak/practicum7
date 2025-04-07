@@ -51,5 +51,5 @@ jobs:
 #      - name: Make deploy.sh executable
 #        run: chmod +x scripts/deploy.sh
 
-      - name: Deploy to AKS
+      - name: Deploy
         run: ./deploy.sh
