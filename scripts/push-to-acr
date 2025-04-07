@@ -1,0 +1,10 @@
+set -u # or set -o nounset
+: "$CONTAINER_REGISTRY"
+: "$VERSION"
+: "$CONTAINER_REGISTRY_UN"
+: "$CONTAINER_REGISTRY_PW"
+
+
+echo ${{ secrets.AZURE_CONTAINER_REGISTRY }} | docker login practicumsruj.azurecr.io --username practicumsruj --password-stdin
+docker tag ghcr.io/rujul13/arithmetic-service:1 practicumsruj.azurecr.io/arithmetic-service:1
+docker push practicumsruj.azurecr.io/arithmetic-service:1
